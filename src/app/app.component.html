@@ -1,1 +1,12 @@
-<app-test></app-test>
+<div id="taskButtons">
+  <button (click)="showCardBalance = !showCardBalance">Task #1</button>
+  <button (click)="showDogsImg = !showDogsImg">Task #2</button>
+  <button (click)="sayHello = !sayHello">Task #3</button>
+  <button (click)="students = !students">Task #4</button>
+  <button (click)="students = !students">Task #6</button>
+</div>
+<app-card-balance *ngIf="showCardBalance"></app-card-balance>
+<app-dogs-img *ngIf="showDogsImg"></app-dogs-img>
+<app-say-hello *ngIf="sayHello"></app-say-hello>
+<app-students *ngIf="students"></app-students>
+<app-fruits  *ngIf="fruits"></app-fruits>

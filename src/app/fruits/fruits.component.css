@@ -1,0 +1,17 @@
+#showFruitsContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: fit-content;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #000;
+}
+
+table tr,
+table td {
+  border: 1px solid #000;
+  padding: 12px 18px;
+}

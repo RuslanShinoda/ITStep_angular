@@ -1,0 +1,12 @@
+<ng-container *ngIf="card.cardNumber; then cardNumberTrue; else cardNumberFalse"></ng-container>
+
+<ng-template #cardNumberTrue>
+  <div id="cardBalance">
+    <h2>Привіт {{card.firstName}} {{card.lastName}}</h2>
+    <h3>Баланс картки: {{card.balance}}</h3>
+  </div>
+</ng-template>
+
+<ng-template #cardNumberFalse>
+  <h3>Ви ввели неправильний номер картки</h3>
+</ng-template>

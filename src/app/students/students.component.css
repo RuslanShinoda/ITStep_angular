@@ -1,0 +1,14 @@
+#inputsForm td {
+  padding: 10px 16px;
+}
+
+#studentsList {
+  border-collapse: collapse;
+  border: 1px solid #000;
+}
+
+#studentsList tr,
+#studentsList td {
+  border: 1px solid #000;
+  padding: 12px 18px;
+}
