@@ -1,9 +1,0 @@
-#dogsImgContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#dogsImgContainer img {
-  max-width: 300px;
-}
