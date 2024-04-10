@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChangeSizeBlockComponent } from './change-size-block.component';
+import { TableGenerationComponent } from './table-generation.component';
 
-describe('ChangeSizeBlockComponent', () => {
-  let component: ChangeSizeBlockComponent;
-  let fixture: ComponentFixture<ChangeSizeBlockComponent>;
+describe('TableGenerationComponent', () => {
+  let component: TableGenerationComponent;
+  let fixture: ComponentFixture<TableGenerationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChangeSizeBlockComponent]
+      imports: [TableGenerationComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ChangeSizeBlockComponent);
+    fixture = TestBed.createComponent(TableGenerationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

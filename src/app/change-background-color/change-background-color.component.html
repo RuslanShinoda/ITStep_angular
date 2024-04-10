@@ -1,0 +1,15 @@
+<textarea cols="50" rows="5" placeholder="Enter some text" [(ngModel)]="enteredText" (change)="emitText()"></textarea>
+<div id="changeColorContainer">
+  <h3>Change text color</h3>
+  <div id="buttonColorContainer">
+    <button class="changeColorButton" style="background-color: red;" (click)="emitColor('red')">Red</button>
+    <button class="changeColorButton" style="background-color: green;" (click)="emitColor('green')">Green</button>
+    <button class="changeColorButton" style="background-color: blue; color: white;"
+      (click)="emitColor('blue')">Blue</button>
+    <button class="changeColorButton" style="background-color: yellow;" (click)="emitColor('yellow')">Yellow</button>
+    <button class="changeColorButton" style="background-color: darkblue; color: white;"
+      (click)="emitColor('darkblue')">Darkblue</button>
+    <button class="changeColorButton" style="background-color: lightcoral;"
+      (click)="emitColor('lightcoral')">Lightcoral</button>
+  </div>
+</div>

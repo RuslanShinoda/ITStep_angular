@@ -1,11 +1,39 @@
 <div id="taskButtons">
-  <button (click)="createInputs = !createInputs">Task #2</button>
-  <button (click)="changeSizeBlock = !changeSizeBlock">Task #3</button>
-  <button (click)="colorBoxs = !colorBoxs">Task #5</button>
-  <button (click)="digitalBackgroundBox = !digitalBackgroundBox">Task #9</button>
+  <button (click)="tableGeneration = !tableGeneration">Task #1 &#64;Input </button>
+  <button (click)="wordList = !wordList">Task #2 &#64;Input </button>
+  <button (click)="changeBackgroundColor = !changeBackgroundColor">Task #1 &#64;Output </button>
+  <button (click)="colorTable = !colorTable">Task #4 &#64;Output </button>
 </div>
 
-<app-create-inputs *ngIf="createInputs"></app-create-inputs>
-<app-change-size-block *ngIf="changeSizeBlock"></app-change-size-block>
-<app-color-boxs *ngIf="colorBoxs"></app-color-boxs>
-<app-digital-background-box *ngIf="digitalBackgroundBox"></app-digital-background-box>
+<!-- Task #1 Input -->
+<ng-container *ngIf="tableGeneration">
+  <button (click)="generationNumber()">Create a number</button>
+  <app-table-generation [arrNumbers]="arrNumbers"></app-table-generation>
+</ng-container>
+
+<!-- Task #2 Input -->
+<ng-container *ngIf="wordList">
+  <app-word-list [words]="arrWords"></app-word-list>
+</ng-container>
+
+<!-- Task #1 Output -->
+<ng-container *ngIf="changeBackgroundColor">
+  <app-change-background-color (text)="receiveText($event)"
+    (color)="receiveColor($event)"></app-change-background-color>
+  <ng-container *ngIf="textAndColor.text">
+    <div id="enteredTextContainer">
+      <h3>Your text:</h3>
+      <p [style.color]="textAndColor.color">{{ textAndColor.text }}</p>
+    </div>
+  </ng-container>
+</ng-container>
+
+<!-- Task #4 Output -->
+<ng-container *ngIf="colorTable">
+  <app-color-table (colorHover)="getColor($event)"></app-color-table>
+
+  <div>
+    <h3>{{whatColorMassage}}</h3>
+  </div>
+</ng-container>
+

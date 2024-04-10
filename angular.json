@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "LearnAngular": {
+    "ITAngular_project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/learn-angular",
+            "outputPath": "dist/itangular-project",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "LearnAngular:build:production"
+              "buildTarget": "ITAngular_project:build:production"
             },
             "development": {
-              "buildTarget": "LearnAngular:build:development"
+              "buildTarget": "ITAngular_project:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "LearnAngular:build"
+            "buildTarget": "ITAngular_project:build"
           }
         },
         "test": {
@@ -98,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "5e8968e8-ab27-419b-bc24-818e1e0c0d44"
   }
 }
