@@ -1,0 +1,10 @@
+<div>
+  <h3>Heads or tails?</h3>
+  <label for="tails">Heads</label>
+  <input type="radio" name="headsTails" id="heads" [value]="'heads'" [(ngModel)]="headsTails">
+  <label for="tails">Tails</label>
+  <input type="radio" name="headsTails" id="tails" [value]="'tails'" [(ngModel)]="headsTails">
+</div>
+<button (click)="getResultHeadsTail()">Check</button>
+
+<h3>{{message}}</h3>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WordListComponent } from './word-list.component';
+import { HeadsTailsComponent } from './heads-tails.component';
 
-describe('WordListComponent', () => {
-  let component: WordListComponent;
-  let fixture: ComponentFixture<WordListComponent>;
+describe('HeadsTailsComponent', () => {
+  let component: HeadsTailsComponent;
+  let fixture: ComponentFixture<HeadsTailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WordListComponent]
+      imports: [HeadsTailsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(WordListComponent);
+    fixture = TestBed.createComponent(HeadsTailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

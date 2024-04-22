@@ -1,77 +1,85 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TableGenerationComponent } from './table-generation/table-generation.component';
 import { NgIf, NgStyle } from '@angular/common';
-import { WordListComponent } from './word-list/word-list.component';
-import { ChangeBackgroundColorComponent } from './change-background-color/change-background-color.component';
-import { ColorTableComponent } from './color-table/color-table.component';
+import { SelectDataComponent } from './select-data/select-data.component';
+import { ChooseEmailsComponent } from './choose-emails/choose-emails.component';
+import { TotalIncomeComponent } from './total-income/total-income.component';
+import { HeadsTailsService } from './heads-tails.service';
+import { HeadsTailsComponent } from './heads-tails/heads-tails.component';
+import { DiceComponent } from './dice/dice.component';
+import { DiceService } from './dice.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  providers: [HeadsTailsService, DiceService],
   imports: [
     RouterOutlet,
-    TableGenerationComponent,
     NgIf,
-    WordListComponent,
-    ChangeBackgroundColorComponent,
-    ColorTableComponent,
     NgStyle,
+    SelectDataComponent,
+    ChooseEmailsComponent,
+    TotalIncomeComponent,
+    HeadsTailsComponent,
+    DiceComponent,
   ],
 })
 export class AppComponent {
-  tableGeneration: boolean = false;
-  wordList: boolean = false;
-  changeBackgroundColor: boolean = false;
-  colorTable: boolean = false;
+  // Buttons to show tasks
+  chooseData: boolean = false;
+  emailList: boolean = false;
+  totalIncome: boolean = false;
+  headsTails: boolean = false;
+  dice: boolean = false;
 
-  // Task #1 Input
-  randomNumber: number = 0;
-  arrNumbers: number[] = [];
-  expression: any;
+  // Task #1
+  selectedData!: string;
 
-  generationNumber() {
-    this.randomNumber = Math.floor(Math.random() * 101);
-    this.arrNumbers.push(this.randomNumber);
+  dateWithChildren(date: string) {
+    this.selectedData = new Date(date).toLocaleDateString();
   }
 
-  //Task #2 Input
-  arrWords = [
-    'computer',
-    'programming',
-    'language',
-    'developer',
-    'application',
-    'website',
-    'javascript',
-    'framework',
-    'database',
-    'algorithm',
-  ];
+  // Task #2
+  receivedArrEmail!: any;
 
-  // Task #1 Output
-  textAndColor = { text: '', color: '' };
-  receiveText(text: string) {
-    this.textAndColor.text = text;
+  getArrEmails(emails: any) {
+    this.receivedArrEmail = emails;
   }
 
-  receiveColor(color: string) {
-    this.textAndColor.color = color;
+  // Task #4
+  totalIncomeObj!: any;
+  calculatedValues!: any;
+
+  getIncomeData(income: any) {
+    this.totalIncomeObj = income;
+    this.calculatedValues = this.calcValueIncome(this.totalIncomeObj);
   }
 
-  // Task #4 Output
-  whatColorMassage: string = '';
+  calcValueIncome(obj: any) {
+    let total = 0;
+    let average = 0;
+    let minimum = Infinity;
+    let maximum = -Infinity;
 
-  getColor(color: string) {
-    this.whatColorMassage = `Вибраний колір "${color}"`;
-  }
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        total += value;
+        minimum = Math.min(minimum, value);
+        maximum = Math.max(maximum, value);
+      }
+    }
 
-  // Task #5 Output
-  numberX2: number = 0;
+    const numOfEntries = Object.keys(obj).length;
+    average = Math.floor(total / numOfEntries);
 
-  multipleNumber(number: number) {
-    this.numberX2 = number * 2;
+    return {
+      total,
+      average,
+      minimum,
+      maximum,
+    };
   }
 }

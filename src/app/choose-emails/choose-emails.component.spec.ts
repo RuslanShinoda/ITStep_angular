@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColorTableComponent } from './color-table.component';
+import { ChooseEmailsComponent } from './choose-emails.component';
 
-describe('ColorTableComponent', () => {
-  let component: ColorTableComponent;
-  let fixture: ComponentFixture<ColorTableComponent>;
+describe('ChooseEmailsComponent', () => {
+  let component: ChooseEmailsComponent;
+  let fixture: ComponentFixture<ChooseEmailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColorTableComponent]
+      imports: [ChooseEmailsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ColorTableComponent);
+    fixture = TestBed.createComponent(ChooseEmailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

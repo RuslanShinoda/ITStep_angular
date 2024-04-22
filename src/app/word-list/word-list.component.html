@@ -1,6 +1,0 @@
-<button (click)="toggleShow()">{{ show ? 'Hide words' : 'Show words' }}</button>
-<ol *ngIf="show">
-  @for (item of words; track $index) {
-  <li [textContent]="item[0].toUpperCase()+item.slice(1)"></li>
-  }
-</ol>

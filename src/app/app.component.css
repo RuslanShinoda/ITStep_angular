@@ -18,7 +18,7 @@
   cursor: pointer;
   border-radius: 12px;
   min-width: 200px;
-  height: 50px;
+  min-height: 50px;
   font-size: 30px;
   transition: background-color 0.3s ease;
 }
@@ -28,18 +28,3 @@
 }
 
 /* Styles for tasks */
-
-#enteredTextContainer{
-  display: flex;
-  gap: 10px;
-}
-
-#enteredTextContainer > *{
-width: fit-content;
-}
-
-#enteredTextContainer p{
-  font-weight: 600;
-  font-size: larger;
-text-decoration: underline;
-}

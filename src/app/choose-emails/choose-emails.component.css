@@ -1,0 +1,5 @@
+.emailBox{
+  display: flex;
+  gap: 20px;
+  margin: 6px 0px;
+}
