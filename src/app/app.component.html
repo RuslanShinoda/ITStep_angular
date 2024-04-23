@@ -1,45 +1,8 @@
-<div id="taskButtons">
+<!-- <div id="taskButtons">
   <button (click)="chooseData = !chooseData">Task #1 components</button>
-  <button (click)="emailList = !emailList">Task #4 components</button>
-  <button (click)="totalIncome = !totalIncome">Task #8 components</button>
-  <button (click)="headsTails = !headsTails">Task #2 services</button>
-  <button (click)="dice = !dice">Task #4 services</button>
-</div>
+</div> -->
 
 <!-- Task #1 -->
-<ng-container *ngIf="chooseData">
-  <app-select-data (dateSelected)="dateWithChildren($event)"></app-select-data>
-  @if (selectedData) {
-  <h4>В дочірньому елементі Ви вибрали наступну дату: {{selectedData}}</h4>
-  }
-</ng-container>
-
-<!-- Task #4  -->
-<ng-container *ngIf="emailList">
-  <app-choose-emails (emailsWithParent)="getArrEmails($event)"></app-choose-emails>
-  @if (receivedArrEmail) {
-  <h2>Вибрані email в дочірньому компоненту:</h2>
-  <ul>
-    @for (item of receivedArrEmail; track $index) {
-    <li>Email: {{item}}</li>
-    }
-  </ul>
-  }
-
-</ng-container>
-
-<!-- Task 8 -->
-<ng-container *ngIf="totalIncome">
-  <app-total-income (monthlyIncome)="getIncomeData($event)" [receivedValues]="calculatedValues"></app-total-income>
-</ng-container>
-
-
-<!-- Task 2 Services -->
-<ng-container *ngIf="headsTails">
-  <app-heads-tails></app-heads-tails>
-</ng-container>
-
-<!-- Task 4 Services -->
-<ng-container *ngIf="!dice">
-  <app-dice></app-dice>
+<ng-container *ngIf="!chooseData">
+  <app-search-movies></app-search-movies>
 </ng-container>

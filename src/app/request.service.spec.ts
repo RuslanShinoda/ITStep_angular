@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HeadsTailsService } from './heads-tails.service';
+import { RequestService } from './request.service';
 
-describe('HeadsTailsService', () => {
-  let service: HeadsTailsService;
+describe('RequestService', () => {
+  let service: RequestService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HeadsTailsService);
+    service = TestBed.inject(RequestService);
   });
 
   it('should be created', () => {

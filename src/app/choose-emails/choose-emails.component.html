@@ -1,8 +1,0 @@
-<div id="emailsContainer">
-  @for (item of arrEmails; track $index) {
-  <div class="emailBox">
-    <input type="checkbox" [name]="item" [id]="'email'+$index" (change)="onCheckboxChange(item, $event)">
-    <label [htmlFor]=" item">{{item}}</label>
-  </div>
-  }
-</div>
