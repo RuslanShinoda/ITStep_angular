@@ -1,0 +1,10 @@
+<ng-content></ng-content>
+<h3>Це дочірній лемент</h3>
+
+<div>
+  <button (click)="showDate()">Показати дату</button>
+  @if (timeOfYear) {
+  <p>Вибрана вами пора року: {{timeOfYear}}</p>
+  }
+
+</div>

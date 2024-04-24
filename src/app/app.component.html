@@ -1,8 +1,37 @@
-<!-- <div id="taskButtons">
-  <button (click)="chooseData = !chooseData">Task #1 components</button>
-</div> -->
+<div id="taskButtons">
+  <button (click)="changeLink = !changeLink">Task #1 ViewChild</button>
+  <button (click)="counter = !counter">Task #2 ViewChild</button>
+  <button (click)="showTimeOfYear = !showTimeOfYear">Task #2 ContentChild</button>
+  <button (click)="showImage = !showImage">Task #3 ContentChild</button>
+</div>
 
-<!-- Task #1 -->
-<ng-container *ngIf="!chooseData">
-  <app-search-movies></app-search-movies>
+<!-- Task #1 ViewChild-->
+<ng-container *ngIf="changeLink">
+  <app-change-link></app-change-link>
+</ng-container>
+
+<!-- Task #2 ViewChild -->
+<ng-container *ngIf="counter">
+  <app-my-counter></app-my-counter>
+</ng-container>
+
+<!-- Task #2 ContentChild -->
+<ng-container *ngIf="showTimeOfYear">
+  <app-show-time-of-year>
+    <div>
+      <label for="selectDate">Виберіть дату</label>
+      <input #selectDate type="date" name="selectDate" id="selectDate" [value]="todayDate()">
+    </div>
+  </app-show-time-of-year>
+</ng-container>
+
+<!-- Task #3 ContentChild -->
+<ng-container *ngIf="showImage">
+  <app-show-image>
+    <div id="dogsContainer">
+      @for (item of imgArray; track $index) {
+      <img #dogsImages [src]="item" alt="Dog image" class="dogsImg">
+      }
+    </div>
+  </app-show-image>
 </ng-container>

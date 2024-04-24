@@ -1,0 +1,14 @@
+<table>
+  <tbody>
+    @for (item of counters; track $index) {
+    <tr>
+      <td> <span #counterValue>Поточний рахунок: {{item.initial || 0}}</span></td>
+      <td>
+        <button (click)="increment(item.id)" class="incDec">+</button>
+        <button (click)="decrement(item.id)" class="incDec">-</button>
+        <button (click)="reset(item.id)">Reset</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
