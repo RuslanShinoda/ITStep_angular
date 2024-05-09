@@ -1,0 +1,122 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div id="formContainer" *ngIf="!userValid">
+  <form action="" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="loginInput" class="form-label">Логін:</label>
+      <input type="text" name="loginInput" id="loginInput" class="form-control" [(ngModel)]="aboutUser.login"
+        placeholder="Більше 3 символі" required>
+      <div *ngIf="allError.login" class="alert alert-danger">{{allError.login}}</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="passwordInput" class="form-label">Пароль:</label>
+      <input type="password" name="passwordInput" id="passwordInput" class="form-control"
+        [(ngModel)]="aboutUser.password" placeholder="Велика літера, мінімум 6 символів" required>
+      <div *ngIf="allError.password" class="alert alert-danger">{{allError.password}}</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="passwordAgainInput" class="form-label">Пароль ще раз:</label>
+      <input type="password" name="passwordAgainInput" id="passwordAgainInput" class="form-control"
+        [(ngModel)]="passwordAgain" required>
+      <div *ngIf="allError.passwordRepeat" class="alert alert-danger">{{allError.passwordRepeat}}</div>
+    </div>
+
+    <div class="mb-3">
+      <p>Стать:</p>
+      <div class="form-check">
+        <input type="radio" name="genderInput" id="genderMaleInput" value="male" class="form-check-input"
+          [(ngModel)]="aboutUser.gender">
+        <label for="genderMaleInput" class="form-check-label">Чоловіча</label>
+      </div>
+
+      <div class="form-check">
+        <input type="radio" name="genderInput" id="genderFemaleInput" value="female" class="form-check-input"
+          [(ngModel)]="aboutUser.gender">
+        <label for="genderFemaleInput" class="form-check-label">Жіноча</label>
+      </div>
+
+      <div class="form-check">
+        <input type="radio" name="genderInput" id="genderOtherInput" value="other" class="form-check-input"
+          [(ngModel)]="aboutUser.gender">
+        <label for="genderOtherInput" class="form-check-label">Інша</label>
+      </div>
+      <div *ngIf="allError.gender" class="alert alert-danger">{{allError.gender}}</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="cityInput" class="form-label">Місто:</label>
+      <select name="cityInput" id="cityInput" class="form-select" [(ngModel)]="aboutUser.city">
+        @for (item of regionalCentersUkraine; track $index) {
+        <option value="{{item}}">{{item}}</option>
+        }
+      </select>
+      <div *ngIf="allError.city" class="alert alert-danger">{{allError.city}}</div>
+    </div>
+
+    <div class="mb-3">
+      <p>Улюблені ігри:</p>
+      @for (item of favoriteGames; track $index) {
+      <div class="form-check">
+        <input type="checkbox" name="favoriteGamesInput" id="favoriteGamesInput{{$index}}" value="{{item}}"
+          class="form-check-input" [(ngModel)]="aboutUser.games[$index]">
+        <label for="favoriteGamesInput{{$index}}" class="form-check-label">{{item}}</label>
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="aboutYourselfInput" class="form-label">Про себе:</label>
+      <textarea name="aboutYourselfInput" id="aboutYourselfInput" cols="30" rows="5" class="form-control"
+        [(ngModel)]="aboutUser.about" placeholder="Розкажіть щось про себе"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="userPhoto" class="form-label">Фотографія:</label>
+      <input type="file" name="userPhoto" id="userPhoto" class="form-control" [(ngModel)]="aboutUser.photo">
+    </div>
+
+    @if (allError.isValid) {
+    <div class="alert alert-danger mt-3" id="incorectForm">{{allError.isValid}}</div>
+    }
+
+    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+  </form>
+</div>
+
+@if (this.userValid) {
+<table>
+  <tbody>
+    <tr *ngIf="this.aboutUser.login !== ''">
+      <td>Логін:</td>
+      <td>{{this.aboutUser.login}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.password !== ''">
+      <td>Пароль:</td>
+      <td>{{this.aboutUser.password}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.gender !== ''">
+      <td>Стать:</td>
+      <td>{{this.aboutUser.gender}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.city !== ''">
+      <td>Місто:</td>
+      <td>{{this.aboutUser.city}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.games.length > 0">
+      <td>Ігри:</td>
+      <td>{{this.aboutUser.games}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.about !== ''">
+      <td>Про себе:</td>
+      <td>{{this.aboutUser.about}}</td>
+    </tr>
+    <tr *ngIf="this.aboutUser.photo !== ''">
+      <td>Фото:</td>
+      <td>{{this.aboutUser.photo}}</td>
+    </tr>
+  </tbody>
+</table>
+}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowImageComponent } from './show-image.component';
+import { RegisterFormComponent } from './register-form.component';
 
-describe('ShowImageComponent', () => {
-  let component: ShowImageComponent;
-  let fixture: ComponentFixture<ShowImageComponent>;
+describe('RegisterFormComponent', () => {
+  let component: RegisterFormComponent;
+  let fixture: ComponentFixture<RegisterFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShowImageComponent]
+      imports: [RegisterFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ShowImageComponent);
+    fixture = TestBed.createComponent(RegisterFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
