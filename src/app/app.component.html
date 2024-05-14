@@ -1,8 +1,14 @@
-<!-- <div id="taskButtons">
-  <button (click)="changeLink = !changeLink">Task #1 ViewChild</button>
-</div> -->
+<div id="taskButtons">
+  <button (click)="registerForm = !registerForm">Task #1 Reactive form</button>
+  <button (click)="addressBook = !addressBook">Task #7</button>
+</div>
 
-<!-- Task #1 ViewChild-->
-<ng-container>
+<!-- Task #1 Reactive form-->
+<ng-container *ngIf="registerForm">
   <app-register-form></app-register-form>
+</ng-container>
+
+<!-- Task #7 -->
+<ng-container *ngIf="addressBook">
+  <app-address-book></app-address-book>
 </ng-container>

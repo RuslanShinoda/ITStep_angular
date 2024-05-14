@@ -1,27 +1,58 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf],
+  imports: [FormsModule, NgFor, NgIf, ReactiveFormsModule],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css',
 })
 export class RegisterFormComponent {
-  aboutUser: any = {
-    login: '',
-    password: '',
-    gender: '',
-    city: '',
-    games: [],
-    about: '',
-    photo: '',
-  };
+  myForm: FormGroup;
+  isSubmitted: boolean = false;
+  userPhoto: string | ArrayBuffer | null = null;
 
-  passwordAgain: string = '';
-  choseGames: any = [];
+  constructor() {
+    this.myForm = new FormGroup({
+      userLogin: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      userPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        this.uppercaseValidator,
+        this.numberValidator,
+      ]),
+      confirmPassword: new FormControl('', Validators.required),
+      userGender: new FormControl('', Validators.required),
+      userCity: new FormControl('', Validators.required),
+      userGames: new FormArray([]),
+      userAboutYourself: new FormControl(),
+      userPhoto: new FormControl(),
+    });
+  }
+
+  uppercaseValidator(control: FormControl): { [key: string]: boolean } | null {
+    const value: string = control.value;
+    const hasUppercase = /[A-Z]/.test(value);
+    return hasUppercase ? null : { uppercaseRequired: true };
+  }
+
+  numberValidator(control: FormControl): { [key: string]: boolean } | null {
+    const value: string = control.value;
+    const hasNumber = /\d/.test(value);
+    return hasNumber ? null : { numberRequired: true };
+  }
 
   regionalCentersUkraine = [
     'Біла Церква',
@@ -65,68 +96,46 @@ export class RegisterFormComponent {
     'Теніс',
   ];
 
-  userValid: boolean = false;
+  clickSubmit: boolean = false;
 
-  allError: any = {};
+  onCheckboxChange(event: any) {
+    const formArray: FormArray = this.myForm.get('userGames') as FormArray;
 
-  isValid() {
-    let valid = true;
-
-    // Перевірка логіна
-    if (this.aboutUser.login.length <= 3) {
-      this.allError.login = 'Логін повинен бути більший за 3 символи';
-      valid = false;
+    if (event.target.checked) {
+      formArray.push(new FormControl(event.target.value));
+    } else {
+      const index = formArray.controls.findIndex(
+        (ctrl) => ctrl.value === event.target.value
+      );
+      if (index >= 0) {
+        formArray.removeAt(index);
+      }
     }
+  }
 
-    // Перевірка пароля
-    if (
-      this.aboutUser.password.length <= 6 ||
-      !/\d/.test(this.aboutUser.password) ||
-      !/[A-Z]/.test(this.aboutUser.password)
-    ) {
-      this.allError.password =
-        'Пароль повинен бути довшим за 6 символів, містити хоча б одну велику літеру та цифру';
-      valid = false;
+  onFileChange(event: any) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.userPhoto = reader.result;
+        this.myForm.patchValue({
+          userPhoto: reader.result,
+        });
+      };
     }
-
-    // Перевірка повторного пароля
-    if (this.aboutUser.password !== this.passwordAgain) {
-      this.allError.passwordRepeat = 'Паролі не співпадають';
-      valid = false;
-    }
-
-    // Перевірка статі
-    if (!this.aboutUser.gender) {
-      this.allError.gender = 'Будь ласка, виберіть стать';
-      valid = false;
-    }
-
-    // Перевірка міста
-    if (!this.aboutUser.city) {
-      this.allError.city = 'Будь ласка, виберіть місто';
-      valid = false;
-    }
-
-    return valid;
   }
 
   onSubmit() {
-    if (!this.isValid()) {
-      this.allError.isValid = 'Форма заповнена некоректно';
-      console.log(this.allError);
-
-      return;
+    this.clickSubmit = true;
+    if (this.myForm.valid) {
+      this.isSubmitted = true;
+      console.log(this.myForm.value);
+    } else {
+      this.isSubmitted = false;
     }
-
-    let chosenGames = [];
-    for (let i = 0; i < this.aboutUser.games.length; i++) {
-      if (this.aboutUser.games[i]) {
-        chosenGames.push(this.favoriteGames[i]);
-      }
-    }
-
-    this.allError = {};
-    this.userValid = true;
-    this.aboutUser.games = chosenGames;
   }
 }
