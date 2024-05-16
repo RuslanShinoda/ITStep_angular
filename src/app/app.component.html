@@ -1,14 +1,11 @@
-<div id="taskButtons">
-  <button (click)="registerForm = !registerForm">Task #1 Reactive form</button>
-  <button (click)="addressBook = !addressBook">Task #7</button>
-</div>
-
-<!-- Task #1 Reactive form-->
-<ng-container *ngIf="registerForm">
-  <app-register-form></app-register-form>
-</ng-container>
-
-<!-- Task #7 -->
-<ng-container *ngIf="addressBook">
-  <app-address-book></app-address-book>
-</ng-container>
+<header>
+  <nav>
+    <ul>
+      <li><a routerLink="/">Головна</a></li>
+      <li><a routerLink="/about">Про Черкаси</a></li>
+      <li><a routerLink="/allLandmark">Цікаві місця</a></li>
+      <li><a routerLink="/famousLandmark">Білий лотос</a></li>
+    </ul>
+  </nav>
+</header>
+<router-outlet></router-outlet>

@@ -1,0 +1,10 @@
+<main>
+  <section class="main-section">
+    <h1>Цікаві місця у Черкасах</h1>
+
+    <div *ngFor="let place of places" class="place">
+      <h2><a [routerLink]="['/allLandmark', place.name]">&#9432; {{ place.name }} </a></h2>
+      <p>{{ place.description }}</p>
+    </div>
+  </section>
+</main>

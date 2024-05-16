@@ -1,0 +1,10 @@
+<main *ngIf="place">
+  <h1>{{ place?.name }}</h1>
+  <p>{{ place?.description }}</p>
+  <div *ngFor="let image of place.images">
+    <img [src]="image" [alt]="place?.name">
+  </div>
+</main>
+<main *ngIf="!place">
+  <h1>Інформація про {{ landmarkName }} не знайдена</h1>
+</main>
